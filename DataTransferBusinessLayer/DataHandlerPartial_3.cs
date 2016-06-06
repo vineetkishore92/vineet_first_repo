@@ -59,15 +59,20 @@ namespace DataTransferBusinessLayer
                         {
                             dictOFS3.Add(str, new KeyValuePair<int, int>(index, 1));
                             index++;
+                            if (!dictToCheckRemove.ContainsKey(str))
+                                dictToCheckRemove.Add(str, false);
                         }
                         else
                         {
+                            if (!dictToCheckRemove.ContainsKey(str))
                             dictToCheckRemove.Add(str, true);
                         }
                     }
                 }
                 else
                 {
+                    if (!dictToCheckRemove.ContainsKey(str))
+                        dictToCheckRemove.Add(str, false);
                     var x = dictOFS3[str];
                     listToS3.Add(new KeyValuePair<int, string>(1, x.Key.ToString()));
                     dictOFS3[str] = new KeyValuePair<int, int>(x.Key, x.Value + 1);
@@ -83,6 +88,7 @@ namespace DataTransferBusinessLayer
                 {
                     if (!dictToCheckRemove.ContainsKey(kvpS3.Key))
                     {
+                        if (!dictRefference.ContainsKey(kvpS3.Key))
                         dictRefference.Add(kvpS3.Key, kvpS3.Value.Value);
                     }
                 }
@@ -94,6 +100,7 @@ namespace DataTransferBusinessLayer
                     {
                         if (dictOFS3.Count < m3)
                         {
+                            if (!dictOFS3.ContainsKey(kvpCheckToRemove.Key))
                             dictOFS3.Add(kvpCheckToRemove.Key, new KeyValuePair<int, int>(index, 1));
                             index++;
                         }

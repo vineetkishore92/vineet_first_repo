@@ -39,10 +39,12 @@ namespace DataTransferBusinessLayer
                         {
                             dictOFS1.Add(str, new KeyValuePair<int, int>(index, 1));
                             index++;
+                            if(!dictToCheckRemove.ContainsKey(str))
                             dictToCheckRemove.Add(str, false);
                         }
                         else
                         {
+                            if (!dictToCheckRemove.ContainsKey(str))
                             dictToCheckRemove.Add(str, true);
 
 
@@ -51,6 +53,7 @@ namespace DataTransferBusinessLayer
                 }
                 else
                 {
+                    if (!dictToCheckRemove.ContainsKey(str))
                     dictToCheckRemove.Add(str, false);
                     var x = dictOFS1[str];
                     listToS1.Add(new KeyValuePair<int, string>(1, x.Key.ToString()));
@@ -67,6 +70,7 @@ namespace DataTransferBusinessLayer
                 {
                     if (!dictToCheckRemove.ContainsKey(kvpS1.Key))
                     {
+                        if(!dictRefference.ContainsKey(kvpS1.Key))
                         dictRefference.Add(kvpS1.Key, kvpS1.Value.Value);
                     }
                 }
@@ -78,6 +82,7 @@ namespace DataTransferBusinessLayer
                     {
                         if (dictOFS1.Count < m1)
                         {
+                            if(!dictOFS1.ContainsKey(kvpCheckToRemove.Key))
                             dictOFS1.Add(kvpCheckToRemove.Key, new KeyValuePair<int, int>(index, 1));
                             index++;
                         }
